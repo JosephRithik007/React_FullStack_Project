@@ -1,0 +1,36 @@
+package Com.hibernate.Project1.hibernateProject1;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class FetchDemo {
+ public static void main(String[] args) {
+	//get and load
+	 Configuration cfg= new Configuration();
+	 cfg.configure("hibernate.cfg.xml");
+	 SessionFactory factory =cfg.buildSessionFactory();
+	 Session session=factory.openSession();
+	 
+	//load:student
+	 Student student=(Student)session.load(Student.class, 101);
+	 System.out.println(student.getName());
+	 
+	 Student student1=(Student)session.load(Student.class, 101);
+	 System.out.println(student1.getCity());
+	 
+	 
+	 //get Student:Id=106
+//	 Student student=(Student)session.get(Student.class, 108);
+//	 System.out.println(student);
+//	 Address ad=(Address)session.get(Address.class, 1);
+//	 System.out.println(ad.getStreet()+" : "+ad.getCity()+" : "+ad.getAddedDate());
+//	 
+//	 Address ad1=(Address)session.get(Address.class, 1);
+//	 System.out.println(ad1.getStreet()+" : "+ad1.getCity()+" : "+ad1.getAddedDate());
+//	 
+	 session.close();
+	 factory.close();
+	 
+	 
+}
+}

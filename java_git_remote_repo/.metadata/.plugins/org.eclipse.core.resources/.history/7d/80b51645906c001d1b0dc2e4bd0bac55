@@ -1,0 +1,13 @@
+package Com.hibernate.Project1.hibernate_mapping_project;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

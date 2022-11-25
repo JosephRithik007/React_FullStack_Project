@@ -1,0 +1,122 @@
+package com.hibernate.one2many_mapping;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class MapDemo {
+	public static void main(String[] args) {
+
+		Configuration cfg = new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+
+	 // creating First Questions objects and setting values
+		Question q1 = new Question();
+		q1.setQuestionId(101);
+		q1.setQuestion("What is Java?");
+		
+
+	   // Creating first object of Answer and setting values
+		Answer a1 = new Answer();
+		a1.setAnsId(201);
+		a1.setAnswer("Jave is a programing language.");
+		a1.setQuestion(q1);
+   
+	 
+		// Creating second object of Answer and setting values
+		Answer a2 = new Answer();
+		a2.setAnsId(202);
+		a2.setAnswer("With the help of java we can create softwares.");
+		a2.setQuestion(q1);
+		
+	 // Creating third object of Answer and setting values
+		Answer a3 = new Answer();
+		a3.setAnsId(203);
+		a3.setAnswer("java has different types of frameworks.");
+		a3.setQuestion(q1);
+		
+		
+		List<Answer>list=new ArrayList<Answer>();
+		list.add(a1);
+		list.add(a2);
+		list.add(a3);
+		
+		q1.setAnswers(list);
+
+		
+		// creating Second Questions objects and setting values
+		Question q2 = new Question();
+		q2.setQuestionId(102);
+		q2.setQuestion("What is Python?");
+		
+//
+    	// Creating object of Answer
+		Answer a4 = new Answer();
+		a4.setAnsId(204);
+		a4.setAnswer("Python is a programing language.");
+		a4.setQuestion(q2);
+   
+//		
+		Answer a5 = new Answer();
+		a5.setAnsId(205);
+		a5.setAnswer("With the help of python we can create softwares.");
+		a5.setQuestion(q1);
+//		
+    	Answer a6 = new Answer();
+		a3.setAnsId(206);
+		a3.setAnswer("Python has different types of frameworks.");
+		a3.setQuestion(q1);
+//
+//
+//	  
+//		List<Answer>list=new ArrayList<Answer>();
+//		list.add(a1);
+//		list.add(a2);
+//		list.add(a3);
+//		
+//		q1.setAnswers(list);
+		
+	
+
+		// session to save
+
+		Session session = factory.openSession();
+		Transaction trx = session.beginTransaction();
+		
+//		session.save(q1);
+//		session.save(a1);
+//		session.save(a2);
+//		session.save(a3);
+		
+		
+		//fetching values for one to many
+		Question ques=(Question)session.get(Question.class , 1212);
+		System.out.println(ques.getQuestion());
+		
+		for (Answer a : ques.getAnswers()) {
+			System.out.println(a.getAnswer());
+			
+		}
+		
+
+  
+		trx.commit();
+		
+		
+		//fetching after bi-directional mapping
+//		 Question ques=(Question)session.get(Question.class, 234324);
+//		 System.out.println(ques.getQuestion());
+//		 System.out.println(ques.getAnswer().getAnswer());
+//		
+//		 
+		 session.close();
+		factory.close();
+
+	}
+
+}

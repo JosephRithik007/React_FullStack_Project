@@ -1,0 +1,68 @@
+//package com.hibernate.one2one_mapping;
+//
+//import org.hibernate.Session;
+//import org.hibernate.SessionFactory;
+//import org.hibernate.Transaction;
+//import org.hibernate.cfg.Configuration;
+//
+//public class EmDemo {
+//	public static void main(String[] args) {
+//		Configuration cfg=new Configuration();
+//		cfg.configure();
+//		SessionFactory factory=cfg.buildSessionFactory();
+//	
+//	//first Student	
+//		Student student1=new Student();
+//		student1.setId(10001);
+//		student1.setName("Atul Singh");
+//		student1.setCity("Indore");
+//		
+//		Certificate cert=new Certificate();
+//		cert.setCourse("Hibernate");
+//		cert.setDuration("4 Days");
+//		student1.setCertificate(cert);
+//	
+//	//Second Student
+//		
+//		Student student2=new Student();
+//		student2.setId(10002);
+//		student2.setName("Saurabh Sharma");
+//		student2.setCity("Mumbai");
+//		
+//		Certificate cert2=new Certificate();
+//		cert2.setCourse("Spring Boot");
+//		cert2.setDuration("10 Days");
+//		student2.setCertificate(cert2);
+//
+//    //Third Student	
+//		
+//		Student student3=new Student();
+//		student3.setId(10003);
+//		student3.setName("Anurag Shukla");
+//		student3.setCity("New Delhi");
+//		
+//		Certificate cert3=new Certificate();
+//		cert3.setCourse("React js");
+//		cert3.setDuration("15 days");
+//		student3.setCertificate(cert3);
+//		
+//		 
+//		
+//		
+//		
+//		Session session1=factory.openSession();
+//		Transaction trx=session1.beginTransaction();
+//		
+//		//saving objects
+//		session1.persist(student1);
+//		session1.persist(student2);
+//		session1.persist(student3);
+//		
+//		trx.commit();
+//		session1.close();
+//		factory.close();
+//		
+//	}
+//	
+//
+//}
